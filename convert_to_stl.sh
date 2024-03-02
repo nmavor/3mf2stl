@@ -22,7 +22,7 @@ EXEC=3mf2stl
 TMPDIR=/tmp/${EXEC}.$$
 STEMNAME=$(basename $1 .3mf)
 TMPZIP=${STEMNAME}.$$
-OUTFILE=${STEMNAME}.stl
+OUTFILE=/stl/${STEMNAME}.stl
 
 Usage() 
 {

@@ -1,5 +1,10 @@
 
-
+# fork from 3mf2stl to update for today code
+## add docke build to run :
+```angular2html
+docker build . -t 3mf2stl
+docker run -v /home/nmavor/git/3mf2stl-nmavor:/stl   3mf2stl  /stl/Lion_Cookie_Cutter.3mf
+```
 # 3mf2stl
 
 This is a simple command-line utility to convert 3d ".3mf" files to
@@ -72,3 +77,4 @@ referenced source files.
 
 Charles Shapiro
 charles.shapiro@tomshiro.org
+
