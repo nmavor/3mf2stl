@@ -1,5 +1,5 @@
 #!/bin/bash
-# set -x
+set -x
 # Copyright Charles Shapiro, 2 Oct 2016
 
 #    This program is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@ EXEC=3mf2stl
 TMPDIR=/tmp/${EXEC}.$$
 STEMNAME=$(basename $1 .3mf)
 TMPZIP=${STEMNAME}.$$
-OUTFILE=/stl/${STEMNAME}.stl
+OUTFILE=${STEMNAME}.stl
 
 Usage() 
 {
@@ -56,6 +56,16 @@ if [ -f /tmp/${TMPZIP} ]
 then
    rm /tmp/${TMPZIP}
 fi
+#is it BambuStudio
+
+if [ $(grep -c "BambuStudio:3mfVersion" $TMPDIR/3D/3dmodel.model ) -eq 1 ]
+then
+  echo "BambuStudio file"
+  #get file name
+  new_name=`cat $TMPDIR/3D/3dmodel.model | grep "component p:path" | awk -F '"' '{print $2}'`
+  mv "$TMPDIR/$new_name" $TMPDIR/3D/3dmodel.model
+fi
+
 (cd $TMPDIR ; zip -r ../${TMPZIP} . ) > /dev/null
 
 ${EXEC} -i /tmp/$TMPZIP -o ${OUTFILE}
