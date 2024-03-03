@@ -68,9 +68,9 @@ fi
 
 (cd $TMPDIR ; zip -r ../${TMPZIP} . ) > /dev/null
 
-${EXEC} -i /tmp/$TMPZIP -o ${OUTFILE}
+${EXEC} -i /tmp/$TMPZIP -o /stl/${OUTFILE}
 
-if [ -f ${OUTFILE} ]
+if [ -f /stl/${OUTFILE} ]
 then
    echo Converted $1 into ${OUTFILE}
    rm /tmp/${TMPZIP}
